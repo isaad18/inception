@@ -1,0 +1,8 @@
+version: '3.3'
+
+services:
+  engine-x:
+    build: ./NGINX
+    container_name: engine-x
+    ports:
+      - "8080:80"
