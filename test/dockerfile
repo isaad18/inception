@@ -1,0 +1,25 @@
+FROM debian:latest
+
+RUN    apt-get update && apt-get upgrade -y \
+       apt-utils \
+       net-tools \
+       iputils-ping \
+       telnet \
+       nano \
+       bash 
+
+RUN    apt-get install -y nginx
+RUN     /etc/init.d/nginx start \
+        /etc/init.d/nginx enable
+
+COPY ./conf/nginx.conf /etc/nginx
+COPY index.html /usr/share/nginx/html
+
+RUN  /etc/init.d/nginx restart
+
+
+
+EXPOSE 8080
+
+# CMD ["/bin/bash"]
+CMD ["nginx", "-g", "daemon off;"]
