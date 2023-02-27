@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   engine-x:
-    build: ./test
+    build: ./nginx
     container_name: engine-x
     ports:
       - "8080:8080"
