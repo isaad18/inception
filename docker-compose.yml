@@ -2,7 +2,9 @@ version: '3.3'
 
 services:
   engine-x:
-    build: ./NGINX
+    build: ./test
     container_name: engine-x
     ports:
-      - "8080:80"
+      - "8080:8080"
+    volumes:
+      - ./test:/usr/share/nginx/html
