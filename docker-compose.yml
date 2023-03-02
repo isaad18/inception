@@ -9,8 +9,20 @@ services:
     volumes:
       - ./test:/usr/share/nginx/html
 
-  db:
-    build: ./mariaDB
-    container_name: db
+
+  wordpress:
+    build: ./wordpress
+    container_name: wordpress
     ports:
-      - "3306:3306"
+      - "3000:3000"
+    depends_on:
+      - engine-x
+
+
+
+
+  # db:
+  #   build: ./mariaDB
+  #   container_name: db
+  #   ports:
+  #     - "3306:3306"

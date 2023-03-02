@@ -1,9 +1,9 @@
-FROM mariadb:10.3.22
+FROM debian:latest
 
 RUN    apt update && apt upgrade -y
 
-RUN    apt install mariadb-server
+RUN    apt install -y mariadb-server
 
-RUN    enable mariadb
+RUN    mysql_secure_installation
 
-ENTRYPOINT ["sh", "config.sh"]
+# ENTRYPOINT ["sh", "config.sh"]
