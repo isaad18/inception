@@ -9,3 +9,6 @@ bgrun :
 
 stop :
 		docker-compose down
+
+stopv :
+		docker-compose down -v

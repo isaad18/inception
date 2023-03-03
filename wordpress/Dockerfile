@@ -1,9 +1,27 @@
-FROM debian:latest
+FROM debian:buster
 
-RUN    apt update && apt upgrade -y
+RUN apt-get update && apt-get install -y \
+	wget \
+	curl \
+	bash \
+	php \
+	php-cgi \
+	php-mysql \
+	php-fpm \
+	php-pdo \
+	php-gd php-cli \
+	php-mbstring \
+	redis \
+	php-redis \
+	&& rm -rf /var/lib/apt/lists/*
 
-RUN    apt install -y php-fpm
+RUN wget https://wordpress.org/latest.tar.gz -P /tmp && \
+    tar xzf /tmp/latest.tar.gz -C /tmp && \
+    rm /tmp/latest.tar.gz && \
+    mkdir -p /var/www/html && \
+    mv /tmp/wordpress/* /var/www/html && \
+    rm -rf /tmp/wordpress
 
-COPY ./config/www.conf /etc/php/7.4/fpm/pool.d
+
 
 ENTRYPOINT [ "sleep", "infinity" ]

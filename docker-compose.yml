@@ -7,7 +7,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./test:/usr/share/nginx/html
+      - ./nginx:/usr/share/nginx/html
 
 
   wordpress:
