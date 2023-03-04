@@ -1,22 +1,21 @@
-version: '3.3'
-
 services:
   engine-x:
     build: ./nginx
     container_name: engine-x
     ports:
       - "8080:8080"
+    depends_on:
+      - wordpress
     volumes:
       - ./nginx:/usr/share/nginx/html
-
 
   wordpress:
     build: ./wordpress
     container_name: wordpress
     ports:
       - "3000:3000"
-    depends_on:
-      - engine-x
+
+
 
 
 
