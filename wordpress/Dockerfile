@@ -7,14 +7,9 @@ RUN apt-get update && apt-get install -y \
 	curl \
 	bash \
 	php \
-	php-cgi \
 	php-mysql \
 	php-fpm \
-	php-pdo \
-	php-gd php-cli \
-	php-mbstring \
-	redis \
-	php-redis \
+	mariadb-client \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Download and extract WordPress
@@ -48,5 +43,4 @@ RUN chown -R www-data:www-data /var/www/html && \
 # Expose the default PHP-FPM port
 EXPOSE 3000
 
-ENTRYPOINT [ "bash", "-c" ]
-CMD [ "php-fpm7.3" ]
+CMD [ "php-fpm7.3", "--nodaemonize" ]
