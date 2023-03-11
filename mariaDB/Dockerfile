@@ -6,4 +6,6 @@ RUN    apt install -y mariadb-server
 
 RUN    mysql_secure_installation
 
-# ENTRYPOINT ["sh", "config.sh"]
+
+
+CMD ["sh", "config.sh"]

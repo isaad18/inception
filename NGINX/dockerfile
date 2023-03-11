@@ -3,7 +3,8 @@ FROM   debian:latest
 RUN    apt-get update && apt-get upgrade -y
 
 RUN    apt-get install -y nginx \
-                openssl
+                openssl \
+                dumb-init
 
 RUN    mkdir /etc/nginx/ssl
 
@@ -13,6 +14,8 @@ COPY   ./index.html /usr/share/nginx/html
 
 COPY   ./conf/nginx.conf /etc/nginx/conf.d
 
-EXPOSE  8080
+EXPOSE  443
+
+ENTRYPOINT [ "dumb-init" , "--"]
 
 CMD    ["nginx", "-g", "daemon off;"]

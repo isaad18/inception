@@ -3,7 +3,7 @@ services:
     build: ./nginx
     container_name: engine-x
     ports:
-      - "8080:8080"
+      - "443:443"
     depends_on:
       - wordpress
     volumes:

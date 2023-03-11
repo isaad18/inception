@@ -41,6 +41,6 @@ RUN chown -R www-data:www-data /var/www/html && \
     chmod -R 755 /var/www/html
 
 # Expose the default PHP-FPM port
-EXPOSE 3000
+EXPOSE 9000
 
 CMD [ "php-fpm7.3", "--nodaemonize" ]
