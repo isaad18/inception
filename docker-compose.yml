@@ -8,20 +8,28 @@ services:
       - wordpress
     volumes:
       - ./nginx:/usr/share/nginx/html
+    networks:
+      - my-network
 
   wordpress:
     build: ./wordpress
     container_name: wordpress
     ports:
       - "3000:3000"
+    networks:
+      - my-network
+
+  db:
+    build: ./mariaDB
+    env_file:
+      - .env
+    container_name: db
+    ports:
+      - "3306:3306"
+    networks:
+      - my-network
 
 
-
-
-
-
-  # db:
-  #   build: ./mariaDB
-  #   container_name: db
-  #   ports:
-  #     - "3306:3306"
+  networks:
+    my-network:
+      name: docker-network
