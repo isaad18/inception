@@ -52,4 +52,14 @@ networks:
 
 volumes:
   wordpress_data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /Users/isaad/data
   db_data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /Users/isaad/data
