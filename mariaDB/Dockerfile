@@ -10,9 +10,9 @@ RUN    apt update && apt upgrade -y
 
 RUN    apt install -y mariadb-server
 
-COPY   ./config/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+COPY   ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
-COPY ./config/sql-setup.sh /tmp
+COPY ./tools/sql-setup.sh /tmp
 RUN chmod +x /tmp/sql-setup.sh
 
 RUN service mysql start && /tmp/sql-setup.sh

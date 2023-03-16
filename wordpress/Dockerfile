@@ -33,7 +33,7 @@ RUN sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.3/fpm/php.ini
 RUN mkdir -p /run/php
 
 # Copy configuration files
-COPY ./config/www.conf /etc/php/7.3/fpm/pool.d
+COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d
 
 # make php config file
 RUN cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
@@ -48,7 +48,7 @@ WORKDIR /var/www/html
 # Expose the default PHP-FPM port
 EXPOSE 9000
 
-COPY test.sh /tmp
+COPY ./tools/test.sh /tmp
 RUN chmod +x /tmp/test.sh
 
 ENTRYPOINT [ "bash", "-c" ]
