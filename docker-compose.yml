@@ -1,8 +1,8 @@
 version: '3.9'
 services:
-  engine-x:
+  nginx:
     build: ./nginx
-    container_name: engine-x
+    container_name: nginx
     ports:
       - "443:443"
     depends_on:
@@ -19,17 +19,17 @@ services:
       - "9000:9000"
     env_file:
       - .env
-    container_name: mywordpress
+    container_name: wordpress
     networks:
       - my-network
     depends_on:
-      - db
+      - mariadb
     volumes:
       - wordpress_data:/var/www/html
     restart: on-failure
 
-  db:
-    container_name: db
+  mariadb:
+    container_name: mariadb
     ports:
       - "3306:3306"
     build:
@@ -56,10 +56,10 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /Users/isaad/data
+      device: /Users/isaad/data/wp
   db_data:
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: /Users/isaad/data
+      device: /Users/isaad/data/sql
